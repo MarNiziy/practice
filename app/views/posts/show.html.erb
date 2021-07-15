@@ -1,0 +1,60 @@
+<p id = "notice"> <%= notice %> </p>
+
+<p>
+	<strong> Title: </strong>
+	<%= @post.title %>
+</p>
+
+<p>
+	<strong> Photo: </strong>
+	<%= image_tag @post.image_url %>
+</p>
+
+<p>
+	<strong> Boby: </strong>
+	<%= @post.body %>
+</p>
+
+<p>
+	<strong> <%= Like.where(post_id: @post).count %> likes </strong>
+</p>
+
+<p>
+	<% if current_user.present? && (current_user.likes.where(post_id: @post) == []) %>
+		<%= link_to("Like", user_post_likes_path(post_id: @post.id), method: :post, class: "btn btn-primary") %>
+		<% elsif current_user.present? %>
+		<%= link_to("Dislike", user_post_like_path(@user, @post), method: :delete, class: "btn btn-primary") %>
+	<% end %>
+</p>
+
+<%= link_to 'Edit', edit_user_post_path(current_user) %>
+<%= link_to 'Back', root_path %>
+
+
+<% unless @post.comments == [] %>
+	<h4>Comments:</h4>
+<% end %>
+<% @post.comments.each do |comment| %>
+    <p><strong><%= @post.title %></strong>: 
+      <%= comment.content %>
+      <% if current_user.id == comment.user_id %>
+        <%= link_to 'Delete', user_post_comment_path(@user, @post, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </p>
+<% end %>
+<br/>
+
+
+<h4>Add a comment:</h4>
+<%= form_for([@user, @post, @post.comments.build]) do |form| %>
+
+  <p>
+    
+    <%= form.text_area :content, placeholder: "Comment" %>
+  </p>
+
+  <div class="actions">
+    <%= form.submit "Comment" , class: "btn btn-primary" %>
+  </div>
+<% end %>
+

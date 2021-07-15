@@ -1,0 +1,60 @@
+<header class="p-3 text-black" style="background-color:#E0FFFF">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+        <div class="user-section">
+        <%= link_to(root_path) do %>
+        <i class = "fa fa-instagram"></i>
+        <% end %>
+        </div>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-5 justify-content-center mb-md-0 p-4">
+          <li><h4>Instagram</h4></li>
+        </ul>
+
+        <% if current_user.present? %>
+          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+            <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+          </form>
+
+          <div class="user-section">
+            <a><i class="fa fa-heart"></i></a>
+
+            <%= link_to(user_path(current_user)) do %>
+            <i class="fa fa-user"></i>
+            <% end %>
+       
+            <%= link_to(destroy_user_session_path, method: :delete) do %>
+            <i class="fa fa-sign-out"></i>
+            <% end %>
+          </div>
+        <%end%> 
+      </div>
+    </div>
+  </header>
+
+    <!--Main content-->
+    <main class="container" style="min-height: 500px;">
+      <%= yield %>
+    </main>
+
+    <!--Footer-->
+    <footer class="container footer">
+      <nav class="navbar d-flex">
+        <ul>
+          <li>ABOUT US
+          </li>
+          <li>SUPPORT</li>
+          <li>PRESS</li>
+          <li>API</li>
+          <li>JOBS</li>
+          <li>PRIVACY</li>
+          <li>TERMS</li>
+          <li>DIRECTORY</li>
+          <li>PROFILES</li>
+          <li>HASHTAGS</li>
+          <li>LANGUAGE</li>
+        </ul>
+        <p> © 2021 INSTAGRAM </p>
+      </nav>
+    </footer>

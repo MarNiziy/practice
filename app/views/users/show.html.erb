@@ -1,0 +1,67 @@
+<div class="user-profile">
+  <div class="profile row">
+    <div class="col-md-4 avatar">
+      <div class="wrapper">
+        <img src="https://i.pinimg.com/564x/86/e1/44/86e14447bcc2c0bef9133ed4d2edc606.jpg">
+      </div>
+    </div>
+    
+    <div class="col-md-8 basic-info">
+      <div class="user-wrapper">
+      	<table>
+      		<tr>
+            <th><h2 class="username"><%= @user.username %></h2></th>
+		        <th><a class="edit-profile">
+		          <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary" %>
+		            </a>
+		        </th>
+
+            <th><a class="edit-profile">
+              <% if current_user.present? && current_user != @user && !current_user.followings.include?(User.find(@user.id)) %>
+            <%= link_to 'Follow', follows_path(following_id: @user.id), method: :post, class: "btn btn-primary" %>
+            <% elsif current_user.present? && current_user != @user %>
+            <%= link_to("Unfollow", follow_path(@user), method: :delete, class: "btn btn-primary") %>
+            <% end %>
+            </a>
+          </th>
+		    </tr>
+		</table>
+
+      </div>
+      <ul class="posts">
+        <li><span><%=Post.where(user_id: @post).count %></span> posts</li>
+        <li><%= link_to(user_followers_path(@user)) do %><span><%= Follow.where(following_id: @user).count %></span> followers<%end%></li>
+        <li><%= link_to(user_followings_path(@user)) do %><span><%=Follow.where(follower_id: @user).count %></span> following<%end%></li>
+      </ul>
+      <h2 class="name"><%= @user.name %></h2>
+      <a class="website"><%= @user.email %></a>
+    </div>
+  </div>
+</div>
+
+<div class="user-tabs">
+<br>	
+  <a class="tab active" href="">
+  	<%= link_to(user_posts_path(@user)) do %>
+  	<br>
+    <i class="fa fa-th"></i>
+    POST
+    <%end%>
+  </a>
+  
+</div>
+
+<div class="user-images">
+  <div class="wrapper">
+    #<%= image_tag @user.image_url %>
+  </div>
+  <div class="wrapper">
+    #<%= image_tag @user.image_url %>
+  </div>
+  <div class="wrapper">
+    #<%= image_tag @user.image_url %>
+  </div>
+  <div class="wrapper">
+    <img src="https://p.favim.com/orig/2018/11/29/study-inspo-school-inspo-studyblr-Favim.com-6588678.jpg">
+  </div>
+</div>

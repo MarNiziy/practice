@@ -1,0 +1,38 @@
+<p id = "notice"> <%= notice %> </p>
+
+<h1> Posts </h1>
+<div class = "container">
+	<div class = "row">
+		<div class = "col-8">
+			
+			<% @posts.each do |post| %>
+				<div class = "insta-post">
+					<div class = "post-meta">
+						<h4><%= post.title %></h4>
+					</div>
+						<%= image_tag post.image_url, class: "img img-fluid" %>
+				</div>
+				<div class = "insta-post">
+					<div class = "post-meta">
+						<%= post.body %>
+					</div>
+					<footers class="container footer">
+					    <nav class="navbar d-flex">
+					        <ul>
+						        <li><%= link_to 'Show', user_post_path(@user, post) %>
+						        </li>
+						        <li><%= link_to 'Edit', edit_user_post_path(current_user, post) %></li>
+						        <li><%= link_to 'Destroy', user_post_path(current_user, post), method: :delete, data: {confirm: 'Are you sure?'} %></li>
+					        </ul>
+					    </nav>
+					</footers>
+				</div>		
+			<% end %>
+		    <footers class="container footer">
+				<nav class="navbar d-flex">
+					<%= link_to 'New Post', new_user_post_path(current_user) %>
+				</nav>	
+			</footers>
+		</div>
+	</div>
+</div>

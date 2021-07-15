@@ -1,0 +1,23 @@
+<div class="container">
+  <%= link_to view_profile_path(current_user.id), method: :get do %>
+    <div class="btn btn-sm btn-secondary">Back to profile</div>
+  <% end %>
+  <div>Following</div>
+  <div class="list-group">
+    <% @followings.each do |f| %>
+      <li class="list-group-item">
+        <%= link_to view_profile_path(f.id), method: :get do %>
+          <div><%= f.profile.name %></div>
+        <% end %>
+      </li>
+    <% end %>
+  </div>
+  <div>Followers</div>
+  <div class="list-group">
+    <% @followers.each do |f| %>
+      <li class="list-group-item">
+          <%= f.email %>
+      </li>
+    <% end %>
+  </div>
+</div>
