@@ -2,5 +2,5 @@
 
 <%= render 'form', user: current_user, post: @post %>
 
-<%= link_to 'Show', user_post_path(@user, @post) %>
-<%= link_to 'Back', user_posts_path(@user) %>
+<%= link_to 'Show', user_post_path(current_user, @post) %>
+<%= link_to 'Back', user_posts_path(@current_user) %>

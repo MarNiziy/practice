@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 	root to: 'feed_posts#index'
 
-	resources :users, only: [:show, :edit, :update] do
+	resources :users, only: [:index, :show, :edit, :update] do
 		resources :posts do
 			resources :comments
 			resources :likes

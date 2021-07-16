@@ -2,7 +2,7 @@
   <div class="profile row">
     <div class="col-md-4 avatar">
       <div class="wrapper">
-        <img src="https://i.pinimg.com/564x/86/e1/44/86e14447bcc2c0bef9133ed4d2edc606.jpg">
+        <%= image_tag @user.image_url %>
       </div>
     </div>
     
@@ -11,10 +11,13 @@
       	<table>
       		<tr>
             <th><h2 class="username"><%= @user.username %></h2></th>
+            <% if current_user.id == @user.id %>
 		        <th><a class="edit-profile">
 		          <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary" %>
 		            </a>
 		        </th>
+            <%end%>
+            
 
             <th><a class="edit-profile">
               <% if current_user.present? && current_user != @user && !current_user.followings.include?(User.find(@user.id)) %>
@@ -29,7 +32,7 @@
 
       </div>
       <ul class="posts">
-        <li><span><%=Post.where(user_id: @post).count %></span> posts</li>
+        <li><span><%=Post.where(user_id: @user).count %></span> posts</li>
         <li><%= link_to(user_followers_path(@user)) do %><span><%= Follow.where(following_id: @user).count %></span> followers<%end%></li>
         <li><%= link_to(user_followings_path(@user)) do %><span><%=Follow.where(follower_id: @user).count %></span> following<%end%></li>
       </ul>
@@ -51,17 +54,8 @@
   
 </div>
 
-<div class="user-images">
+<!--<div class="user-images">
   <div class="wrapper">
-    #<%= image_tag @user.image_url %>
-  </div>
-  <div class="wrapper">
-    #<%= image_tag @user.image_url %>
-  </div>
-  <div class="wrapper">
-    #<%= image_tag @user.image_url %>
-  </div>
-  <div class="wrapper">
-    <img src="https://p.favim.com/orig/2018/11/29/study-inspo-school-inspo-studyblr-Favim.com-6588678.jpg">
-  </div>
-</div>
+    <%= image_tag @user.image_url %>
+  </div>-->
+ 

@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>User name</th>
+      <th><h3>User name</h3></th>
       <th colspan="1"></th>
     </tr>
   </thead>
@@ -12,7 +12,8 @@
     <% @users.each do |user| %>
       <% unless user.id == current_user.id %>      
         <tr>
-          <td><%= user.email %></td>
+          <td><h4><%= user.username %></h4></td>
+          <br>
           <td><%= link_to 'Show', user_path(user) %></td>
         </tr>
       <% end %>

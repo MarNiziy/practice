@@ -17,11 +17,15 @@
             <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
           </form>
 
+          
           <div class="user-section">
-            <a><i class="fa fa-heart"></i></a>
+
+            <%= link_to (users_path) do%>
+            <i class="fa fa-users"></i>
+            <% end %>
 
             <%= link_to(user_path(current_user)) do %>
-            <i class="fa fa-user"></i>
+            <i class="fa fa-address-card-o"></i>
             <% end %>
        
             <%= link_to(destroy_user_session_path, method: :delete) do %>
