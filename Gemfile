@@ -21,7 +21,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-#########################################################################3
+#########################################################################
 gem 'coffee-rails', '~> 5.0'
 
 gem 'pg', '~> 1.2', '>= 1.2.3'
@@ -35,6 +35,20 @@ gem 'font-awesome-rails'
 gem 'bootstrap-sass', '~> 3.4.1'
 
 gem 'jquery-rails'
+##############################--Testing--#####################################
+group :development, :test do
+  gem 'rspec-rails', '~> 5.0.0'
+  gem 'capybara'
+  gem 'shoulda-matchers', '~> 5.0'
+  gem 'database_cleaner-active_record'
+  gem "factory_bot_rails"
+  gem 'faker'
+end
+
+
+
+
+##########################################################################
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
