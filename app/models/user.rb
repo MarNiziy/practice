@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   include ImageUploader::Attachment(:image)
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
@@ -16,7 +15,6 @@ class User < ApplicationRecord
   has_many :followings, through: :following_follows, source: :following
 	
   validates :email, presence: true, uniqueness: true
-  #validates :email, format: {with: EMAIL_FORMAT, message: "Invalid email"}
-  #validates :name, presence: true
-  #validates :bio, presence: true
+  validates :name, presence: true
+  validates :username, presence: true
 end
