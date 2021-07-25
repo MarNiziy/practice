@@ -60,7 +60,7 @@ RSpec.describe PostsController, type: :controller do
 			}
 		end
 
-		subject {post :create, params: params}
+		subject {process :create, method: :post, params: params}
 
 		it 'create post' do
 			expect{subject}.to change {Post.count}.by(1)
