@@ -29,6 +29,12 @@ RSpec.describe UsersController, type: :controller do
 		end
 
 		it {is_expected.to render_template(:show)}
+
+		it 'order users' do
+			subject
+			User.order('created_at desc').to_a.should == [user]
+			#expect(assigns(:user)).to be_sorted(by: :id, verse: :desc)
+		end
 	end
 
 	describe '#edit' do
