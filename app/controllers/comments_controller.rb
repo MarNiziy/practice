@@ -5,9 +5,10 @@ class CommentsController < ApplicationController
 	def create
         @comment = current_user.comments.build(comment_params)
         @comment.post = @post
-        	if @comment.save!
-        		redirect_to user_post_path(@user, @post)
-        	end
+        
+        if @comment.save
+        	redirect_to user_post_path(@user, @post)
+        end
 	end
 
 
@@ -22,7 +23,7 @@ class CommentsController < ApplicationController
 	private
 
     def comment_params
-      params.require(:comment).permit(:post, :content)
+      params.require(:comment).permit(:content, :user_id, :post_id)
     end
 
     def load_user
