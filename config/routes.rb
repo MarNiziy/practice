@@ -13,8 +13,4 @@ Rails.application.routes.draw do
 	end
 
 	resources :follows, only: [:create, :destroy]
-
-	#resources :feed_posts, only: [:index]
-
-
 end
