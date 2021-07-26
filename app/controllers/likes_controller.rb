@@ -1,19 +1,19 @@
 class LikesController < ApplicationController
 	before_action :authenticate_user!
-	before_action :load_user 
+	before_action :load_user, :load_post 
 
 	def create
     @like = current_user.likes.build(like_params)
-	@post = Post.find(params[:post_id])
+    @post = @like.post
+
     if @like.save
       redirect_to user_post_path(@user, @post)
-    
     end
   end
 
   def destroy
-  	@post = Post.find(params[:post_id])
     @like = current_user.likes.where(post_id: @post).take
+    @post = @like.post
     
     @like.destroy
     redirect_to user_post_path(@user, @post)
@@ -24,7 +24,12 @@ class LikesController < ApplicationController
   def load_user
     @user = User.find(params[:user_id])
   end
+
+  def load_post
+    @post = Post.find(params[:post_id])
+  end
+
   def like_params
-    params.permit :post_id
+    params.permit(:post_id)
   end
 end
